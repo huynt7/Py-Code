@@ -130,15 +130,12 @@ class UI():
                 return
             wTime = conn.set_time(newtime)
             # get time check
-            time.sleep(2)
+            time.sleep(1)
             self.show_result2.config(text="Sync time:\n" + str(newtime))
             print ("Sync time: ", newtime)
             conn.disconnect()
         except Exception as e:
             print ("Process terminate : {}".format(e))
-        finally:
-            if conn:
-                conn.disconnect()
 
     def mainloop(self):
         self.sync_curTime()
