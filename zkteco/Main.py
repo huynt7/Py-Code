@@ -2,6 +2,7 @@ import tkinter.ttk as tk
 import sys
 import time
 
+from tkinter import messagebox
 from tkinter import *
 from zk import ZK
 from datetime import datetime
@@ -17,7 +18,9 @@ class UI():
         self.setting()
         self.create_Widget()
         self.pack()
+        self.sync_curTime()
         self.mainloop()
+        
 
     def setting(self):
         self.root.geometry('280x210+300+200')
@@ -49,8 +52,7 @@ class UI():
         self.set_month.place(x = 60, y = 110, height = 25, width = 50)
         self.set_hour.place(x = 60, y = 140, height = 25, width = 50)
         self.set_minute.place(x = 60, y = 170, height = 25, width = 50)
-
-
+        
     def create_Widget(self):
 
         self.text_addIP = Label(self.root, text = 'IP:', font = ('Times', '10'))
@@ -138,7 +140,6 @@ class UI():
             print ("Process terminate : {}".format(e))
 
     def mainloop(self):
-        self.sync_curTime()
         self.root.mainloop()
 
 app = UI()

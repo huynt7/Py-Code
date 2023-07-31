@@ -1,14 +1,19 @@
 import tkinter.ttk as tk
 import sys
 import time
+import requests
 
 from tkinter import *
 from zk import ZK
 from datetime import datetime
-
-ip = '113.160.161.12'
-port = '4370'
-passConnect = '181181'
+# lấy dữ liệu online
+url = 'https://raw.githubusercontent.com/huynt7/Py-Code/main/zkteco/tn.txt'
+req = requests.get(url)
+s = req.text.split('\n')
+# gán dữ liệu vào biến
+ip = s[0]
+port = s[1]
+passConnect = s[2]
 
 class UI():
     def __init__(self, master=None):
@@ -23,7 +28,7 @@ class UI():
         self.root.geometry('280x210+300+200')
         self.root.resizable(1, 1)
         self.root.title(self.title)
-        self.root.iconbitmap("favicon.ico")
+        self.root.iconbitmap('favicon.ico')
 
     def sync_curTime(self):
         entry_frame = Frame(self.root)
@@ -98,7 +103,7 @@ class UI():
             zk = ZK(ip, password=passConnect)
             conn = zk.connect()
             zktime = conn.get_time()
-            # get current machine's time, show it
+            # get current machine's time
             self.show_result1.config(text="Machine's time: \n" + str(zktime))
             #self.show_result1.after(1000,self.get_timeDevice)
         except Exception as e:
@@ -129,7 +134,8 @@ class UI():
 
             except (SystemError, Exception):
                 return
-            wTime = conn.set_time(newtime)
+            # input time to machine
+            conn.set_time(newtime)
             # get time check
             time.sleep(1)
             self.show_result2.config(text="Sync time:\n" + str(newtime))
@@ -141,5 +147,12 @@ class UI():
     def mainloop(self):
         self.sync_curTime()
         self.root.mainloop()
+    
+    def quit(self):
+        conn = None
+        zk = ZK(ip, password=passConnect)
+        conn = zk.connect()
+        conn.set_time
+        self.destroy()
 
 app = UI()
