@@ -1,7 +1,12 @@
 import tkinter.ttk as tk
+import subprocess
 import sys
 import time
-import requests
+
+try:
+	import requests
+except ImportError:
+	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'requests'])
 
 from tkinter import messagebox
 from tkinter import *
@@ -101,8 +106,10 @@ class UI():
 
     def get_timeDevice(self):
         try:
+            xIP = self.addressIP.get()
+            xPASS = self.password.get()
             conn = None
-            zk = ZK(ip, password=passConnect)
+            zk = ZK(xIP, password=xPASS)
             conn = zk.connect()
             zktime = conn.get_time()
             # get current machine's time, show it

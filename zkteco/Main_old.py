@@ -42,7 +42,7 @@ except:
 
 
 conn = None
-zk = ZK('113.160.161.12', port=4370, timeout=5, password=181181, force_udp=False, ommit_ping=False)
+zk = ZK('14.241.62.251', port=4370, timeout=5, force_udp=False, ommit_ping=False)
 
 try:
     conn = zk.connect()
