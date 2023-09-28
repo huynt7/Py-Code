@@ -14,7 +14,7 @@ from zk import ZK
 from datetime import datetime
 
 # lấy dữ liệu online
-url = 'https://raw.githubusercontent.com/huynt7/Py-Code/main/zkteco/tn.txt'
+url = 'https://raw.githubusercontent.com/huynt7/Py-Code/main/zkteco/bn.txt'
 req = requests.get(url)
 s = req.text.split('\n')
 # gán dữ liệu vào biến
