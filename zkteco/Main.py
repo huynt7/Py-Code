@@ -25,7 +25,7 @@ passConnect = s[2]
 class UI():
     def __init__(self, master=None):
         self.root = Tk()
-        self.title = 'Device Zkteco., Coder: Huynt'
+        self.title = 'Huynt Zkteco'
         self.setting()
         self.create_Widget()
         self.pack()
