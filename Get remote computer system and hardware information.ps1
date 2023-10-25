@@ -11,6 +11,7 @@ foreach ($Computer in $ArrComputers)
     $computerSystem = get-wmiobject Win32_ComputerSystem -Computer $Computer
     $computerBIOS = get-wmiobject Win32_BIOS -Computer $Computer
     $computerOS = get-wmiobject Win32_OperatingSystem -Computer $Computer
+    $computerBuild = Get-WmiObject Win32_OperatingSystem -ComputerName $Computer
     $computerCPU = get-wmiobject Win32_Processor -Computer $Computer
     $computerHDD = Get-WmiObject Win32_LogicalDisk -ComputerName $Computer -Filter 'DeviceId = "C:"'
         write-host "System Information for: " $computerSystem.Name -BackgroundColor DarkCyan
@@ -23,8 +24,8 @@ foreach ($Computer in $ArrComputers)
         "HDD Space: " + "{0:P2}" -f ($computerHDD.FreeSpace/$computerHDD.Size) + " Free (" + "{0:N2}" -f ($computerHDD.FreeSpace/1GB) + "GB)"
         "RAM: " + "{0:N2}" -f ($computerSystem.TotalPhysicalMemory/1GB) + "GB"
         "Operating System: " + $computerOS.caption + ", Service Pack: " + $computerOS.ServicePackMajorVersion
+        "Build Number: " + $computerBuild.BuildNumber
         "User logged In: " + $computerSystem.UserName
         "Last Reboot: " + $computerOS.ConvertToDateTime($computerOS.LastBootUpTime)
-        ""
         "-------------------------------------------------------"
 }
