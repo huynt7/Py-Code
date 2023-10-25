@@ -2,7 +2,7 @@
 # Shows hardware and OS details from a list of PCs
 # Thom McKiernan 22/08/2014
 
-$ArrComputers =  "DESKTOP-1SP23K9"
+$ArrComputers =  "."
 #Specify the list of PC names in the line above. "." means local system
 
 Clear-Host
@@ -12,7 +12,7 @@ foreach ($Computer in $ArrComputers)
     $computerBIOS = get-wmiobject Win32_BIOS -Computer $Computer
     $computerOS = get-wmiobject Win32_OperatingSystem -Computer $Computer
     $computerCPU = get-wmiobject Win32_Processor -Computer $Computer
-    $computerHDD = Get-WmiObject Win32_LogicalDisk -ComputerName $Computer -Filter drivetype=2
+    $computerHDD = Get-WmiObject Win32_LogicalDisk -ComputerName $Computer -Filter 'DeviceId = "C:"'
         write-host "System Information for: " $computerSystem.Name -BackgroundColor DarkCyan
         "-------------------------------------------------------"
         "Manufacturer: " + $computerSystem.Manufacturer
