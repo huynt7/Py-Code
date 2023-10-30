@@ -2,11 +2,10 @@ param(
     [Parameter(Mandatory=$true)]
     $ipAddress
 )
+
+
 $Computer = [System.Net.Dns]::GetHostByAddress($IPAddress).Hostname
 #Write-Host $Computer
-
-
-
 
 $Locked = "No"
 #Gets ths system drive
@@ -98,7 +97,6 @@ function Show-SystemInfo
     Write-Host "_____________________________________________"
     Write-Host ""
 }
-
 cls
 Write-Host "System Info"
 Show-SystemInfo

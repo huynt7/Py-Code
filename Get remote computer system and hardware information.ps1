@@ -24,6 +24,8 @@ foreach ($Computer in $ArrComputers)
         "HDD Space: " + "{0:P2}" -f ($computerHDD.FreeSpace/$computerHDD.Size) + " Free (" + "{0:N2}" -f ($computerHDD.FreeSpace/1GB) + "GB)"
         "RAM: " + "{0:N2}" -f ($computerSystem.TotalPhysicalMemory/1GB) + "GB"
         "Operating System: " + $computerOS.caption + ", Service Pack: " + $computerOS.ServicePackMajorVersion
+        "OS Display Version: " + $computerOS.OSDisplayVersion
+        ""
         "Build Number: " + $computerBuild.BuildNumber
         "User logged In: " + $computerSystem.UserName
         "Last Reboot: " + $computerOS.ConvertToDateTime($computerOS.LastBootUpTime)
